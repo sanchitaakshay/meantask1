@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <form #userForm="ngForm" (ngSubmit)="postUser(userForm)">
+        <input type="hidden" class ="form-control mt-2" name="_id" #_id="ngModel" [(ngModel)] ="userService.selectedUser._id" placeholder="_id">
+        <input type="text" class ="form-control mt-2" name="firstname" #firstname="ngModel" [(ngModel)] ="userService.selectedUser.firstname" placeholder="firstname">
+        <input type="text" class ="form-control mt-2" name="lastname" #lastname="ngModel" [(ngModel)] ="userService.selectedUser.lastname" placeholder="lastname">
+        <input type="number" class ="form-control mt-2" name="age" #age="ngModel" [(ngModel)] ="userService.selectedUser.age" placeholder="age">
+      <select class="form-control mt-2"name="gender" #gender="ngModel" [(ngModel)]="userService.selectedUser.gender">
+        
+        <option value="" [selected]="" selected disabled>---select gender---</option>
+        <option value="Male" >Male</option>
+        <option value="Female">Female</option>
+        
+      </select>
+      <input type="number" class ="form-control mt-2" name="mobile" #mobile="ngModel" [(ngModel)] ="userService.selectedUser.mobile" placeholder="mobile" minlength=10 maxlength=10>
+        <button type="submit" class="btn btn-block btn-primary mt-2">Save</button>
+      </form>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 colxs-12">
+<table class="table">
+  <thead>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Age</th>
+    <th>Gender</th>
+    <th>Mobile</th>
+    <th>Edit</th>
+    <th>delete</th>
+  </thead>
+  <tbody>
+
+
+    <tr *ngFor="let user of userService.users">
+      <td>{{user.firstname}}</td>
+      <td>{{user.lastname}}</td>
+      <td>{{user.age}}</td>
+      <td>{{user.gender}}</td>
+      <td>{{user.mobile}}</td>
+      <td> <button (click)="editUser(user)" class="btn btn-sm btn-primary"> Edit</button></td>
+      <td><button (click)="deleteUser(user._id)" class="btn btn-sm btn-danger"> delete</button></td>
+    </tr>
+
+
+  </tbody>
+</table>
+    </div>
+  </div>
+</div>
